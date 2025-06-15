@@ -1,0 +1,16 @@
+.navbarBrand {
+  font-family: "Edu NSW ACT Hand", cursive;
+  font-size: 1.8rem;
+  color: teal;
+}
+
+.navLinkCustom {
+  color: rgb(204, 148, 45);
+  transition: 0.3s;
+}
+
+.navLinkCustom:hover {
+  color: rgb(245, 180, 0);
+  /* text-decoration: underline; */
+  transform: scale(1.1);
+}

@@ -1,0 +1,38 @@
+body {
+  font-family: "Edu NSW ACT Hand", cursive;
+}
+:root {
+  --background: linear-gradient(135deg, #c4c4c4, #ffffff);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: linear-gradient(135deg, #c4c4c4, #ffffff);
+  }
+}
+
+body {
+  background: var(--background);
+}
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
