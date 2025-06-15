@@ -1,43 +1,25 @@
-"use client";
+import { todoModel } from "@/app/_lib/models/todo";
+import React from "react";
 import { redirect } from "next/navigation";
-import React, { useState } from "react";
-
 export default function AddTodo() {
-  const [todoData, setTodoData] = useState({
-    title: "",
-    status: "",
-  });
-  const handleChange = (event) => {
-    if (event.target.name === "todoTitle") {
-      setTodoData({ ...todoData, title: event.target.value });
-    } else if (event.target.name === "todoStatus") {
-      setTodoData({ ...todoData, status: event.target.value });
-    }
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await fetch("http://localhost:3000/api/todo", {
-      method: "POST",
-      body: JSON.stringify(todoData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  async function addTodo(formData) {
+    "use server";
+    console.log(formData);
+    const title = formData.get("todoTitle");
+    const status = formData.get("todoStatus");
+    console.log(title, status);
+    await todoModel.create({ title, status });
     redirect("/todolist");
-  };
-
+  }
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form
+        action={addTodo}
+        className="m-auto w-50 d-flex flex-column gap-3 py-5"
+      >
         <div className="form-group">
           <label>Todo title</label>
-          <input
-            type="text"
-            name="todoTitle"
-            className="form-control"
-            value={todoData.title}
-            onChange={(e) => handleChange(e)}
-          />
+          <input type="text" name="todoTitle" className="form-control" />
         </div>
         <div className="form-group">
           <label>Todo status </label>
@@ -45,14 +27,12 @@ export default function AddTodo() {
             type="text"
             name="todoStatus"
             className="form-control"
-            value={todoData.status}
-            onChange={(e) => handleChange(e)}
             placeholder="stutus must be one of todo, inprogress, done"
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button type="submit" className="btn btn-primary my-3">
+          Add Todo
         </button>
       </form>
     </>
