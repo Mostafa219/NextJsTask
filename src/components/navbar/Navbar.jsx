@@ -54,6 +54,14 @@ export default function Navbar() {
               <li className="nav-item px-3">
                 <Link
                   className={`nav-link ${styles.navLinkCustom}`}
+                  href="/todolist"
+                >
+                  Todos
+                </Link>
+              </li>
+              <li className="nav-item px-3">
+                <Link
+                  className={`nav-link ${styles.navLinkCustom}`}
                   href="/about"
                 >
                   About
